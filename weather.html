@@ -17,14 +17,21 @@
   console.log(results);
   var icon="http://openweathermap.org/img/w/"+ results.weather[0].icon + ".png";
   document.getElementById("im").src=icon;
+  document.getElementById("im").style.display="block";
+  var t=results.main.temp- 273.15;
+  var climate=results.weather[0].main;
+  document.getElementById("show").innerHTML=t;
+  document.getElementById("show").style.display="block";
+  document.getElementById("c").innerHTML=climate;
 };
   </script>
 </head>
-<body align="center">
+<body>
   <h1>Weather App</h1>
   Enter City:<input type="text" id="p">
   <input type ="button" value="search" onclick="getWeather()"></br>
-  <img alt="not visible" id="im" style="height:200px;width:200px;">
-<p id="show"></p>
+  <img alt="no image" hidden id="im"style="height:200px;width:200px;">
+<h3 id="show" hidden></h3>
+<h3 id="c"></h3>
 </body>
 </html>

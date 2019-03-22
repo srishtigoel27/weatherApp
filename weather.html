@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+  function getWeather()
+  {
+    var city=document.getElementById("p").value;
+    var requestString="http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=161215e5bb83686cc1f5dbe1c06e5574";
+    request = new XMLHttpRequest();
+    request.onload = proccessResults;
+    request.open("get", requestString, true);
+    request.send();
+  }
+  var proccessResults = function()
+  {
+  var results = JSON.parse(this.responseText);
+  console.log(results);
+  var icon="http://openweathermap.org/img/w/"+ results.weather[0].icon + ".png";
+  document.getElementById("im").src=icon;
+};
+  </script>
+</head>
+<body align="center">
+  <h1>Weather App</h1>
+  Enter City:<input type="text" id="p">
+  <input type ="button" value="search" onclick="getWeather()"></br>
+  <img alt="not visible" id="im" style="height:200px;width:200px;">
+<p id="show"></p>
+</body>
+</html>
